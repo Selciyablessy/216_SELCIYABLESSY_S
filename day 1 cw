@@ -1,0 +1,15 @@
+import React from "react";
+function alertmsg(){
+  console.log("welcome");
+  alert("React message");
+}
+function App()
+{
+  return(
+     <div>
+      <button onClick={alertmsg}>Click me</button>
+      <h1>Hello, World</h1>
+     </div>
+  )
+}
+export default App;
