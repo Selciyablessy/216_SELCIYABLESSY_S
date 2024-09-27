@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from "react";
 import Axios from 'axios';
-import './UserList.css'; // Importing CSS for styling
+import './UserAdd.css'; // Importing CSS for styling
 
-const UserList = () => {
+const UserAdd = () => {
     // State to hold user data and input values
     const [users, setUsers] = useState([]);
     const [name, setName] = useState('');
@@ -76,4 +76,4 @@ const UserList = () => {
     );
 };
 
-export default UserList;
+export default UserAdd;
