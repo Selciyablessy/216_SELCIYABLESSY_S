@@ -31,7 +31,7 @@ const Dashone = () => {
      
       <AppBar
         position="fixed"
-        sx={{width:'1085px' }}
+        sx={{width:'1125px' }}
       >
         <Toolbar>
           <IconButton
@@ -41,7 +41,7 @@ const Dashone = () => {
             onClick={() => navigate('/')}
             sx={{ mr: 2 }}
           >
-            <MenuIcon onClick={() => navigate('/dash-one')} />
+            <MenuIcon onClick={() => navigate('/')} />
           </IconButton>
           <Typography variant="h6" noWrap component="div">
             Dashboard
