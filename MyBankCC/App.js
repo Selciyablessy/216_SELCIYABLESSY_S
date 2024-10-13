@@ -9,6 +9,10 @@ import Dashone from './components/Dashone';
 import ForgotPasswordPage from './components/ForgotPasswordPage';
 import Transaction from './components/Transaction';
 import Acountpage from './components/Acountpage';
+import Acdetails from './components/Acdetails';
+import VerificationPage from './components/VerificationPage';
+import SettingsPage from './components/SettingsPage';
+import Vs from './components/Vs';
 const App = () => {
   const [formType, setFormType] = useState(null); // 'login' or 'signup'
   const [isForgotPassword, setIsForgotPassword] = useState(false);
@@ -29,12 +33,18 @@ const App = () => {
       {/* Routes for different pages */}
       
         <Routes>
+        <Route path='/settings' element={<SettingsPage/>}/>
+        <Route path="/verification" element={<VerificationPage />} />
+        <Route path="/dash-one" element={<Dashone />} />
           <Route path="/" element={<HomePage setFormType={setFormType}/>} />
           <Route path="/about-us" element={<AboutPage/>} />
           <Route path="/contact-us" element={<ContactUs/>} />
-          <Route path="/dash-one" element={<Dashone/>}/>
+
+          <Route path='/vs' element={<Vs/>}/>
           <Route path="/transaction" element={<Transaction/>}/>
           <Route path="/acount" element={<Acountpage/>}/>
+          <Route path="/acdet" element={<Acdetails/>}/>
+
         </Routes>
 
       
