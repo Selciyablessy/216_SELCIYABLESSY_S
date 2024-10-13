@@ -44,27 +44,13 @@ const ForgotPasswordPage = ({ setIsForgotPassword }) => {
       >
         <CloseIcon />
       </IconButton>
-      <Typography variant="h6" component="div" sx={{ mb: -1 }} textAlign={'center'} fontFamily={'Arial Black'} color={'blue'}>
+      <Typography variant="h6" component="div" sx={{ mb: -1 }} textAlign={'center'}  color={'blue'}>
         Forgot Password Verification
       </Typography>
+
       <TextField
         fullWidth
-        type="email"
-        label="Email"
-        {...register('email', {
-          required: 'Email is required',
-          pattern: {
-            value: /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/,
-            message: 'Invalid email address',
-          },
-        })}
-        error={Boolean(errors.email)}
-        helperText={errors.email?.message}
-        margin="normal"
-      />
-      <TextField
-        fullWidth
-        label="OTP"
+        label="Enter your OTP"
         {...register('otp', {
           required: 'OTP is required',
           minLength: {
