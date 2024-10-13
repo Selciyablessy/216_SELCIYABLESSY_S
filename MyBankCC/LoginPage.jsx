@@ -1,5 +1,5 @@
 // src/pages/LoginPage.jsx
-import { useNavigate } from 'react-router-dom'; // Import useNavigate function from react-router-dom library 
+import { useNavigate } from 'react-router-dom';
 import React from 'react';
 import { useForm } from 'react-hook-form';
 import TextField from '@mui/material/TextField';
@@ -12,9 +12,8 @@ import Typography from '@mui/material/Typography';
 import IconButton from '@mui/material/IconButton';
 import CloseIcon from '@mui/icons-material/Close';
 
-
 const LoginPage = ({ setFormType, setIsForgotPassword }) => {
-  const navigate = useNavigate(); // Initialize the useNavigate hook
+  const navigate = useNavigate();
 
   const {
     register,
@@ -25,10 +24,11 @@ const LoginPage = ({ setFormType, setIsForgotPassword }) => {
   const onSubmit = (data) => {
     alert('Login successful');
     console.log('Login successful', data);
+    localStorage.setItem('userName', data.username); // Store username
+    localStorage.setItem('balance', 1000); // Initialize balance
     setFormType(null);
     setIsForgotPassword(false);
-    navigate('/dash-one'); 
-  };
+    navigate('/verification', { state: { from: '/dash-one' } });  };
 
   return (
     <Box
@@ -60,13 +60,7 @@ const LoginPage = ({ setFormType, setIsForgotPassword }) => {
       <TextField
         fullWidth
         label="Username"
-        {...register('username', {
-          required: 'Username is required',
-          minLength: {
-            value: 3,
-            message: 'Username must be at least 3 characters',
-          },
-        })}
+        {...register('username', { required: 'Username is required' })}
         error={Boolean(errors.username)}
         helperText={errors.username?.message}
         margin="normal"
@@ -76,14 +70,7 @@ const LoginPage = ({ setFormType, setIsForgotPassword }) => {
         fullWidth
         label="Email"
         type="email"
-        //...copy all previous state values
-        {...register('email', {
-          required: 'Email is required',
-          pattern: {
-            value: /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/,
-            message: 'Invalid email address',
-          },
-        })}
+        {...register('email', { required: 'Email is required' })}
         error={Boolean(errors.email)}
         helperText={errors.email?.message}
         margin="normal"
@@ -93,13 +80,7 @@ const LoginPage = ({ setFormType, setIsForgotPassword }) => {
         fullWidth
         type="password"
         label="Password"
-        {...register('password', {
-          required: 'Password is required',
-          minLength: {
-            value: 6,
-            message: 'Password must be at least 6 characters',
-          },
-        })}
+        {...register('password', { required: 'Password is required' })}
         error={Boolean(errors.password)}
         helperText={errors.password?.message}
         margin="normal"
@@ -129,6 +110,7 @@ const LoginPage = ({ setFormType, setIsForgotPassword }) => {
             href="#"
             variant="body2"
             onClick={(e) => {
+              alert('OTP has been sent to your mail');
               e.preventDefault();
               setIsForgotPassword(true);
             }}
