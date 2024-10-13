@@ -9,6 +9,7 @@ import Typography from '@mui/material/Typography';
 import IconButton from '@mui/material/IconButton';
 import CloseIcon from '@mui/icons-material/Close';
 import Grid from '@mui/material/Grid';
+import { useNavigate } from 'react-router-dom';
 
 const SignupPage = ({ setFormType }) => {
   const {
@@ -16,13 +17,16 @@ const SignupPage = ({ setFormType }) => {
     handleSubmit,
     formState: { errors },
     watch,
-    reset,
   } = useForm();
+  const navigate = useNavigate();
 
   const onSubmit = (data) => {
     alert('Signup successful');
     console.log('Signup successful', data);
+    localStorage.setItem('userName', data.firstName); // Store user's first name
+    localStorage.setItem('balance', 1000); // Initialize balance
     setFormType(null);
+    navigate('/vs'); // Navigate to account page
   };
 
   return (
@@ -57,9 +61,7 @@ const SignupPage = ({ setFormType }) => {
           <TextField
             fullWidth
             label="First Name"
-            {...register('firstName', {
-              required: 'First Name is required',
-            })}
+            {...register('firstName', { required: 'First Name is required' })}
             error={Boolean(errors.firstName)}
             helperText={errors.firstName?.message}
             margin="normal"
@@ -70,9 +72,7 @@ const SignupPage = ({ setFormType }) => {
           <TextField
             fullWidth
             label="Last Name"
-            {...register('lastName', {
-              required: 'Last Name is required',
-            })}
+            {...register('lastName', { required: 'Last Name is required' })}
             error={Boolean(errors.lastName)}
             helperText={errors.lastName?.message}
             margin="normal"
@@ -83,13 +83,7 @@ const SignupPage = ({ setFormType }) => {
           <TextField
             fullWidth
             label="Phone Number"
-            {...register('phoneNumber', {
-              required: 'Phone Number is required',
-              pattern: {
-                value: /^[0-9]{10}$/,
-                message: 'Phone Number must be 10 digits',
-              },
-            })}
+            {...register('phoneNumber', { required: 'Phone Number is required', pattern: { value: /^[0-9]{10}$/, message: 'Phone Number must be 10 digits' } })}
             error={Boolean(errors.phoneNumber)}
             helperText={errors.phoneNumber?.message}
             margin="normal"
@@ -100,13 +94,7 @@ const SignupPage = ({ setFormType }) => {
         fullWidth
         label="Email"
         type="email"
-        {...register('email', {
-          required: 'Email is required',
-          pattern: {
-            value: /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/,
-            message: 'Invalid email address',
-          },
-        })}
+        {...register('email', { required: 'Email is required' })}
         error={Boolean(errors.email)}
         helperText={errors.email?.message}
         margin="normal"
@@ -116,13 +104,7 @@ const SignupPage = ({ setFormType }) => {
         fullWidth
         type="password"
         label="Password"
-        {...register('password', {
-          required: 'Password is required',
-          minLength: {
-            value: 6,
-            message: 'Password must be at least 6 characters',
-          },
-        })}
+        {...register('password', { required: 'Password is required' })}
         error={Boolean(errors.password)}
         helperText={errors.password?.message}
         margin="normal"
@@ -132,10 +114,7 @@ const SignupPage = ({ setFormType }) => {
         fullWidth
         type="password"
         label="Confirm Password"
-        {...register('confirmPassword', {
-          required: 'Please confirm your password',
-          validate: value => value === watch('password') || 'Passwords must match',
-        })}
+        {...register('confirmPassword', { required: 'Please confirm your password', validate: value => value === watch('password') || 'Passwords must match' })}
         error={Boolean(errors.confirmPassword)}
         helperText={errors.confirmPassword?.message}
         margin="normal"
