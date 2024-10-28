@@ -28,8 +28,9 @@ style={{
       <Typography variant="body1" paragraph>
         Welcome to MyBank. We are committed to providing the best banking experience to our customers.
         Our team is dedicated to offering top-notch financial services with a focus on customer satisfaction.
+        
       </Typography>
-      <Button variant="contained" color="primary" onClick={() => navigate('/')}>
+      <Button variant="contained" color="primary" onClick={() => navigate('/home')}>
         Back to Home
       </Button>
     </Box>
