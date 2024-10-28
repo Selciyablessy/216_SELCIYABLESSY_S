@@ -123,7 +123,7 @@ const ContactUs = () => {
             <Button variant="contained" color="primary" type="submit">
               Send
             </Button>
-            <Button variant="contained" color="primary" onClick={() => navigate('/')}>
+            <Button variant="contained" color="primary" onClick={() => navigate('/home')}>
               Back
             </Button>
           </Box>
